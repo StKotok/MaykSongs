@@ -21,24 +21,24 @@
 
     <Button
         android:id="@+id/btnFontSizePlus"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginRight="54dp"
+        android:layout_marginRight="80dp"
         android:background="@drawable/round_button"
         android:gravity="center"
         android:text="+"
         android:textColor="#ffffff"
-        android:textSize="15dp" />
+        android:textSize="28dp" />
 
     <Button
         android:id="@+id/btnFontSizeMinus"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
@@ -50,6 +50,6 @@
         android:gravity="center"
         android:text="-"
         android:textColor="#ffffff"
-        android:textSize="15dp" />
+        android:textSize="28dp" />
 
 </RelativeLayout>

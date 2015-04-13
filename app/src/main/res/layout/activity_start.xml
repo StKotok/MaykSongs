@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0099cc"
+    android:screenOrientation="portrait"
     tools:context=".FullscreenActivity">
 
     <TextView
@@ -22,8 +23,8 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="60dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <AutoCompleteTextView
             android:id="@+id/autoCompleteTextView"
@@ -32,12 +33,12 @@
             android:layout_height="40dp"
             android:layout_weight="1"
             android:alpha="0.85"
-            android:numeric="integer"
-            android:singleLine="true"
             android:background="#55ffffff"
-            android:text="@string/charNumber"
             android:maxLines="1"
-            android:paddingLeft="8dp" />
+            android:numeric="integer"
+            android:paddingLeft="8dp"
+            android:singleLine="true"
+            android:text="@string/charNumber" />
 
         <Button
             android:id="@+id/btn_ok"

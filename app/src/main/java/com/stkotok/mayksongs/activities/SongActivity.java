@@ -9,7 +9,6 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.stkotok.mayksongs.R;
 import com.stkotok.mayksongs.util.SongsService;
@@ -27,7 +26,7 @@ public class SongActivity extends Activity {
     private TextView textView;
     private float originalTextSize;
     private float textSize;
-    private float textSizeStep = 1.0f;
+    private float textSizeStep = 3.0f;
     private SharedPreferences preferences;
 
     @Override
@@ -39,7 +38,7 @@ public class SongActivity extends Activity {
         if (preferences == null) {
             preferences = this.getSharedPreferences(PREFERENCES_FILE, MODE_PRIVATE);
         }
-        textSize = preferences.getFloat(TEXT_SIZE, 16.0f);
+        textSize = preferences.getFloat(TEXT_SIZE, 18.0f);
 
         String songNumber = getIntent().getStringExtra("song") + "\n\n";
 
@@ -90,8 +89,6 @@ public class SongActivity extends Activity {
                     case R.id.btnFontSizePlus:
                         textSize = textSize + textSizeStep;
                         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
-//                        Toast.makeText(getBaseContext(), "+", Toast.LENGTH_SHORT).show();
-                        Toast.makeText(getBaseContext(), Float.toString(textSize), Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
@@ -105,8 +102,6 @@ public class SongActivity extends Activity {
                         if (textSize > textSizeStep) {
                             textSize = textSize - textSizeStep;
                             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
-//                            Toast.makeText(getBaseContext(), "-", Toast.LENGTH_SHORT).show();
-                            Toast.makeText(getBaseContext(), Float.toString(textSize), Toast.LENGTH_SHORT).show();
                         }
                         break;
                 }

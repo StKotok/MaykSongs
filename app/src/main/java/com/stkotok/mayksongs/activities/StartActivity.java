@@ -3,6 +3,7 @@ package com.stkotok.mayksongs.activities;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -48,6 +49,7 @@ public class StartActivity extends Activity implements TextWatcher {
 
         SongsService.getSongs();
         prepareMyList();
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         myAutoComplete = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
         myAutoComplete.addTextChangedListener(this);
