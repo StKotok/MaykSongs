@@ -8,9 +8,9 @@ import android.text.style.StyleSpan;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SongsService {
-    public static final int NUMBER_OF_SONGS = 460;
+import static com.stkotok.mayksongs.util.Utils.NUMBER_OF_SONGS;
 
+public class SongsService {
     private static List<Song> songs;
     private static int[] numbers = new int[NUMBER_OF_SONGS];
 
@@ -50,10 +50,6 @@ public class SongsService {
         Spannable italic = new SpannableString(text);
         italic.setSpan(new StyleSpan(Typeface.BOLD), 0, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return italic;
-    }
-
-    public enum Formatting {
-        Default, Italic, Bold
     }
 
     public static String songTextSTUB() {
@@ -128,5 +124,9 @@ public class SongsService {
                 "И в небе увидать\n" +
                 "То, что Ты хочешь нам дать.";
         return text;
+    }
+
+    public enum Formatting {
+        Default, Italic, Bold
     }
 }

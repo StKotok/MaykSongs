@@ -20,7 +20,7 @@ import com.stkotok.mayksongs.util.SongsService;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.stkotok.mayksongs.util.SongsService.NUMBER_OF_SONGS;
+import static com.stkotok.mayksongs.util.Utils.NUMBER_OF_SONGS;
 
 public class StartActivity extends Activity implements TextWatcher {
     String[] item;
@@ -30,6 +30,15 @@ public class StartActivity extends Activity implements TextWatcher {
 
     Button buttonOK;
     TextView autoList;
+    OnClickListener OkOnClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View arg0) {
+            String choosedNumber = String.valueOf(myAutoComplete.getText());
+            Intent intent = new Intent(getBaseContext(), SongActivity.class);
+            intent.putExtra("song", choosedNumber);
+            startActivity(intent);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,16 +85,6 @@ public class StartActivity extends Activity implements TextWatcher {
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         // TODO Auto-generated method stub
     }
-
-    OnClickListener OkOnClickListener = new OnClickListener() {
-        @Override
-        public void onClick(View arg0) {
-            String choosedNumber = String.valueOf(myAutoComplete.getText());
-            Intent intent = new Intent(getBaseContext(), SongActivity.class);
-            intent.putExtra("song", choosedNumber);
-            startActivity(intent);
-        }
-    };
 
     private void hideActionBar() {
         ActionBar actionBar = getActionBar();
