@@ -2,15 +2,18 @@ package com.stkotok.mayksongs.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.StyleSpan;
 import android.widget.TextView;
 
 import com.stkotok.mayksongs.R;
 import com.stkotok.mayksongs.util.SongsService;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static com.stkotok.mayksongs.util.SongsService.getBoldText;
+import static com.stkotok.mayksongs.util.SongsService.getItalicText;
 
 public class SongActivity extends Activity {
     TextView textView;
@@ -24,9 +27,35 @@ public class SongActivity extends Activity {
         String songNumber = getIntent().getStringExtra("song") + "\n\n";
 
         textView = (TextView) findViewById(R.id.songText);
-        textView.setText(getItalicText(songNumber));
+        textView.setText(getBoldText(songNumber));
         if (songNumber.startsWith("312")) {
-            textView.append(SongsService.songTextSTUB312());
+            List<String> textList = new ArrayList<>(Arrays.asList(SongsService.songTextSTUB312().split("(<[ib]>)|(>)")));
+            for (String s : textList) {
+                SongsService.Formatting formatting = SongsService.Formatting.Default;
+                if (s.endsWith("</i")) {
+                    formatting = SongsService.Formatting.Italic;
+                }
+                if (s.endsWith("</b")) {
+                    formatting = SongsService.Formatting.Bold;
+                }
+                switch (formatting) {
+                    case Italic:
+                        s = s.substring(0, s.length() - 3);
+                        textView.append(getItalicText(s));
+                        break;
+                    case Bold:
+                        s = s.substring(0, (s.length() - 3));
+                        textView.append(getBoldText(s));
+                        break;
+                    case Default:
+                        if (s.length() != 0) {
+                            textView.append(s);
+                        }
+                        break;
+                    default:
+                        // Something went wrong
+                }
+            }
         } else {
             textView.append(SongsService.songTextSTUB());
         }
@@ -39,9 +68,5 @@ public class SongActivity extends Activity {
         }
     }
 
-    public static Spannable getItalicText(String text) {
-        Spannable italic = new SpannableString(text);
-        italic.setSpan(new StyleSpan(Typeface.ITALIC), 0, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        return italic;
-    }
+
 }
