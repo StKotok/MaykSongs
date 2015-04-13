@@ -1,7 +1,8 @@
-package com.stkotok.mayksongs;
+package com.stkotok.mayksongs.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,14 +13,19 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.stkotok.mayksongs.R;
+import com.stkotok.mayksongs.util.Song;
+import com.stkotok.mayksongs.util.SongsService;
+
+import java.util.ArrayList;
 import java.util.List;
 
-import static com.stkotok.mayksongs.SongsService.NUMBER_OF_SONGS;
+import static com.stkotok.mayksongs.util.SongsService.NUMBER_OF_SONGS;
 
-public class FullscreenActivity extends Activity implements TextWatcher {
+public class StartActivity extends Activity implements TextWatcher {
     String[] item;
     AutoCompleteTextView myAutoComplete;
-    List<String> myList;
+    List<String> myList = new ArrayList<>(NUMBER_OF_SONGS);
     ArrayAdapter<String> myAutoCompleteAdapter;
 
     Button buttonOK;
@@ -28,7 +34,7 @@ public class FullscreenActivity extends Activity implements TextWatcher {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fullscreen);
+        setContentView(R.layout.activity_start);
         hideActionBar();
 
         SongsService.getSongs();
@@ -74,31 +80,10 @@ public class FullscreenActivity extends Activity implements TextWatcher {
     OnClickListener OkOnClickListener = new OnClickListener() {
         @Override
         public void onClick(View arg0) {
-            // TODO Auto-generated method stub
-
-            String newAdd = myAutoComplete.getText().toString();
-
-            if (!myList.contains(newAdd)) {
-                myList.add(newAdd);
-
-                // I don't know why simple notifyDataSetChanged()
-                // cannot update the autocomplete words
-                // myAutoCompleteAdapter.notifyDataSetChanged();
-
-                // update the autocomplete words
-                myAutoCompleteAdapter = new ArrayAdapter<String>(
-                        FullscreenActivity.this,
-                        android.R.layout.simple_dropdown_item_1line, myList);
-
-                myAutoComplete.setAdapter(myAutoCompleteAdapter);
-            }
-
-            // display the words in myList for your reference
-            String s = "";
-            for (int i = 0; i < myList.size(); i++) {
-                s += myList.get(i) + "\n";
-            }
-            autoList.setText(s);
+            String choosedNumber = String.valueOf(myAutoComplete.getText());
+            Intent intent = new Intent(getBaseContext(), SongActivity.class);
+            intent.putExtra("song", choosedNumber);
+            startActivity(intent);
         }
     };
 

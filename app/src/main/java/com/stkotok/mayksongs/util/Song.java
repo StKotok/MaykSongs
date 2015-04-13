@@ -1,4 +1,4 @@
-package com.stkotok.mayksongs;
+package com.stkotok.mayksongs.util;
 
 public class Song {
     private int number;
