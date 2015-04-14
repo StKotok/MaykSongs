@@ -17,16 +17,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.stkotok.mayksongs.util.Constants.PREFERENCES_FILE;
+import static com.stkotok.mayksongs.util.Constants.TEXT_SIZE;
+import static com.stkotok.mayksongs.util.Constants.TEXT_SIZE_STEP;
 import static com.stkotok.mayksongs.util.SongsService.getBoldText;
 import static com.stkotok.mayksongs.util.SongsService.getItalicText;
-import static com.stkotok.mayksongs.util.Utils.PREFERENCES_FILE;
-import static com.stkotok.mayksongs.util.Utils.TEXT_SIZE;
 
 public class SongActivity extends Activity {
     private TextView textView;
     private float originalTextSize;
     private float textSize;
-    private float textSizeStep = 3.0f;
     private SharedPreferences preferences;
 
     @Override
@@ -87,7 +87,7 @@ public class SongActivity extends Activity {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.btnFontSizePlus:
-                        textSize = textSize + textSizeStep;
+                        textSize = textSize + TEXT_SIZE_STEP;
                         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
                         break;
                 }
@@ -99,8 +99,8 @@ public class SongActivity extends Activity {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.btnFontSizeMinus:
-                        if (textSize > textSizeStep) {
-                            textSize = textSize - textSizeStep;
+                        if (textSize > TEXT_SIZE_STEP) {
+                            textSize = textSize - TEXT_SIZE_STEP;
                             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
                         }
                         break;

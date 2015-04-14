@@ -8,7 +8,7 @@ import android.text.style.StyleSpan;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.stkotok.mayksongs.util.Utils.NUMBER_OF_SONGS;
+import static com.stkotok.mayksongs.util.Constants.NUMBER_OF_SONGS;
 
 public class SongsService {
     private static List<Song> songs;
